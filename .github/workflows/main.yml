@@ -18,4 +18,4 @@ jobs:
           yarn global add @angular/cli
           ng config -g cli.packageManager yarn
           ng add angular-cli-ghpages
-          ng deploy --base-href "https://github.com/tobiaswahyudi/medium-rare/"
+          ng deploy --no-silent --repo=https://github.com/tobiaswahyudi/medium-rare.git
