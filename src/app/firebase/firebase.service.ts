@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
-import * as firebase from "firebase";
+import * as firebaseApp from "firebase/app";
 
 @Injectable({
   providedIn: "root"
 })
 export class FirebaseService {
-  // Service fields
   app: firebase.app.App;
   analytics: firebase.analytics.Analytics;
   firestore: firebase.firestore.Firestore;
+  firestoreRef: firebase.firestore.CollectionReference;
+  user: firebase.User | undefined;
 
   constructor() {
     const firebaseConfig = {
@@ -22,9 +23,17 @@ export class FirebaseService {
       measurementId: "G-8WWCBJ5KJB"
     };
     // Initialize Firebase
-    this.app = firebase.initializeApp(firebaseConfig);
-    this.analytics = firebase.analytics(this.app);
-    this.firestore = firebase.firestore(this.app);
+    this.app = firebaseApp.initializeApp(firebaseConfig);
+    this.analytics = firebaseApp.analytics(this.app);
+    this.firestore = firebaseApp.firestore(this.app);
+    this.firestoreRef = this.firestore.collection("users");
+  }
+
+  public login(): void {
+    const provider = new firebaseApp.auth.GoogleAuthProvider();
+    this.app.auth().signInWithPopup(provider).then((result) => {
+      this.user = result.user;
+    });
   }
 }
 
