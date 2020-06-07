@@ -20,4 +20,4 @@ jobs:
           ng add angular-cli-ghpages
           git config --global user.email ${{secrets.EMAIL}}
           git config --global user.name "tobiaswahyudi"
-          ng deploy --no-silent --repo=https://tobiaswahyudi:${{secrets.GITHUB_TOKEN}}@github.com/tobiaswahyudi/medium-well.git
+          ng deploy --base-href=/medium-well/ --no-silent --repo=https://tobiaswahyudi:${{secrets.GITHUB_TOKEN}}@github.com/tobiaswahyudi/medium-well.git
