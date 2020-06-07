@@ -11,14 +11,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup
+      - name: Setup and Deploy 🚀
         run: |
           yarn
           export PATH="$PATH:`yarn global bin`"
           yarn global add @angular/cli
+          ng config -g cli.packageManager yarn
           ng add angular-cli-ghpages
-          
-
-      - name: Deploy 🚀
-        run: |
           ng deploy
