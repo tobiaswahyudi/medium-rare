@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./variables.scss";
+
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+}
+
+.serif {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+}
