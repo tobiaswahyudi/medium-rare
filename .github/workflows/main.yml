@@ -11,8 +11,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup GH Pages
+      - name: Setup
         run: |
+          yarn
+          export PATH="$PATH:`yarn global bin`"
+          yarn global add @angular/cli
           ng add angular-cli-ghpages
           
 
