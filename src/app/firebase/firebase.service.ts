@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import * as firebaseApp from "firebase/app";
+import "firebase/firestore";
+import "firebase/auth";
 
 @Injectable({
   providedIn: "root"
 })
 export class FirebaseService {
   app: firebase.app.App;
-  analytics: firebase.analytics.Analytics;
   firestore: firebase.firestore.Firestore;
   firestoreRef: firebase.firestore.CollectionReference;
   user: firebase.User | undefined;
@@ -24,8 +25,7 @@ export class FirebaseService {
     };
     // Initialize Firebase
     this.app = firebaseApp.initializeApp(firebaseConfig);
-    this.analytics = firebaseApp.analytics(this.app);
-    this.firestore = firebaseApp.firestore(this.app);
+    this.firestore = this.app.firestore();
     this.firestoreRef = this.firestore.collection("users");
   }
 
