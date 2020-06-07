@@ -18,4 +18,5 @@ jobs:
           yarn global add @angular/cli
           ng config -g cli.packageManager yarn
           ng add angular-cli-ghpages
-          ng deploy --no-silent --repo=https://github.com/tobiaswahyudi/medium-rare.git
+          
+          ng deploy --no-silent --repo=https://tobiaswahyudi:${{secrets.GITHUB_TOKEN}}@github.com/tobiaswahyudi/medium-rare.git
