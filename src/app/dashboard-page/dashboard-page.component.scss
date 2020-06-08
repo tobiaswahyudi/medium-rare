@@ -1,0 +1,108 @@
+@import "../../variables.scss";
+
+.page {
+  padding-left: 30vw;
+}
+
+.dashboard {
+  box-sizing: border-box;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  height: 100vh;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .toolbar {
+    margin-bottom: 1.5rem;
+
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+
+    .searchbar {
+      height: 2rem;
+      flex: 1 1;
+      display: flex;
+      flex-direction: row;
+      border: 1px solid $stroke-gray;
+      border-radius: 1rem;
+      align-items: center;
+      padding: 0 0.6rem;
+
+      input {
+        border: none;
+        outline: none;
+        font: inherit;
+        padding: 0 0.5rem;
+        flex: 1 1;
+      }
+    }
+
+    .gridlist {
+      display: flex;
+      width: 7.5rem;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 1.5rem;
+    }
+  }
+}
+
+.switch {
+  position: relative;
+  width: 2.5rem;
+
+  input {
+    display: none;
+
+    + label {
+      position: relative;
+      height: 1.5rem;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+      vertical-align: middle;
+    }
+
+    + label::before,
+    + label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2.5rem;
+      bottom: 0;
+      display: block;
+    }
+
+    + label::before {
+      right: 0;
+      background-color: $stroke-gray;
+      border-radius: 1rem;
+    }
+
+    + label::after {
+      top: 3px;
+      left: 3px;
+      width: calc(1.5rem - 6px);
+      height: calc(1.5rem - 6px);
+      border-radius: 1rem;
+      background-color: $bg-white;
+      transition: 0.3s;
+    }
+
+    &:checked + label::after {
+      margin-left: 1rem;
+    }
+  }
+}
