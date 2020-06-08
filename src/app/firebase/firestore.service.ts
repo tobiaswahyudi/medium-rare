@@ -29,4 +29,34 @@ export class FirestoreService {
     collectionData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'))
     .subscribe(console.log);
   }
+
+  public createDoc(file: MWDocument): void {
+    const user = this.firebaseService.user;
+    if (!user) {
+      throw new Error('User must be logged in.');
+    }
+
+    this.firebaseService.firestoreRef.doc(user.uid).collection('documents').add(file);
+  }
+
+  public createOnFirstTime(): void {
+    const user = this.firebaseService.user;
+    if (!user) {
+      throw new Error('User must be logged in.');
+    }
+    this.firebaseService.firestoreRef.doc(user.uid).get().then(snapshot => {
+      console.log(snapshot);
+      if (!snapshot.exists) {
+        this.firebaseService.firestoreRef.doc(user.uid).set({
+          displayName: user.displayName
+        });
+        this.createDoc({
+          title: 'Sample Document',
+          dateCreated: new Date(),
+          dateModified: new Date(),
+          contents: ''
+        });
+      }
+    });
+  }
 }

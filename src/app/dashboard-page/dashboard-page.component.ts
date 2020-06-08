@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import FirebaseService from '../firebase/firebase.service';
+import { FirestoreService } from '../firebase/firestore.service';
 import { redirectToHome } from '../utils';
 
 @Component({
@@ -9,7 +10,7 @@ import { redirectToHome } from '../utils';
 })
 export class DashboardPageComponent implements OnInit {
 
-  constructor(public firebaseService: FirebaseService) {}
+  constructor(public firebaseService: FirebaseService, public firestoreService: FirestoreService) {}
 
   ngOnInit(): void {
     // Should probably protect from router rather than the components.
@@ -18,5 +19,6 @@ export class DashboardPageComponent implements OnInit {
     if (this.firebaseService.user === undefined) {
       redirectToHome();
     }
+    this.firestoreService.createOnFirstTime();
   }
 }
