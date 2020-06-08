@@ -6,8 +6,9 @@
     <div class="spacer"></div>
     <nav>
       <a id="about" routerLink="/about">About</a>
-      <a routerLink="/dashboard" *ngIf="user">Dashboard</a>
-      <app-login-button *ngIf="user === undefined"></app-login-button>
+      <a routerLink="/dashboard" *ngIf="firebaseService.user" id="dash">Dashboard</a>
+      <a (click)="firebaseService.logout()" *ngIf="firebaseService.user">Sign Out</a>
+      <app-login-button *ngIf="firebaseService.user === undefined" (click)="firebaseService.login()"></app-login-button>
     </nav>
 </header>
 
