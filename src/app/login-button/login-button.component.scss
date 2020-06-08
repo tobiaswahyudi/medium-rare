@@ -1,0 +1,24 @@
+@import "../../variables.scss";
+
+.login-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2rem;
+
+  background: $bg-white;
+  border: 1px solid $stroke-white;
+  border-radius: 3px;
+
+  font: inherit;
+
+  padding: 0.25rem 0.7rem;
+
+  > img {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-right: 0.7rem;
+  }
+
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.25);
+}
