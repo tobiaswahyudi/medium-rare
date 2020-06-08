@@ -40,15 +40,16 @@ export class FirebaseService {
     const provider = new firebaseApp.auth.GoogleAuthProvider();
 
     this.app.auth().signInWithPopup(provider)
-    .then((result) => {
-      this.user = result.user;
-    })
-    .catch(console.log);
+      .then((result) => {
+        this.user = result.user;
+      })
+      .catch(console.error);
   }
 
   public logout(): void {
     this.app.auth().signOut();
     this.user = undefined;
+    window.location.href = '/';
   }
 }
 

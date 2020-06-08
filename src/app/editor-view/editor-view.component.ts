@@ -11,6 +11,8 @@ export class EditorViewComponent implements OnInit {
   constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
+    if (this.firebaseService.user === undefined) {
+      window.location.href = '/';
+    }
   }
-
 }

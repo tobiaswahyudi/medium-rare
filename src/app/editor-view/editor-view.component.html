@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" *ngIf="firebaseService.user">
   <app-left-nav></app-left-nav>
   <div class="editor">
     <input class="title" value="File Title" placeholder="Document Name">
