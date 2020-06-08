@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import FirebaseService from "../firebase/firebase.service";
 
 @Component({
   selector: "app-landing-page",
@@ -7,9 +8,11 @@ import { Component, OnInit } from "@angular/core";
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  user: firebase.User | undefined;
+
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
+    this.user = this.firebaseService.user;
   }
-
 }
