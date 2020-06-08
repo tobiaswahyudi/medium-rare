@@ -1,8 +1,11 @@
 @import "./variables.scss";
 
-html {
+html, body, span, p {
   font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
   font-size: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .serif {
@@ -12,4 +15,19 @@ html {
 
 button, a {
   cursor: pointer;
+}
+
+input {
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $text-gray;
+    opacity: 1; /* Firefox */
+  }
+  
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $text-gray;
+  }
+  
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $text-gray;
+  }
 }

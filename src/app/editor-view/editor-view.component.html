@@ -1,0 +1,30 @@
+<div class="page">
+  <app-left-nav></app-left-nav>
+  <div class="editor">
+    <input class="title" value="File Title" placeholder="Document Name">
+    <div class="user">
+      <img src="{{firebaseService.user.photoURL}}">
+      <span>{{firebaseService.user.displayName}}</span>
+    </div>
+    <div class="toolbar">
+      <button>
+        <img src="assets/img/code.svg">
+        <span>Raw HTML</span>
+      </button>
+      <button>
+        <img src="assets/img/share.svg">
+        <span>Share</span>
+      </button>
+      <button>
+        <img src="assets/img/invite.svg">
+        <span>Collaborate</span>
+      </button>
+      <button>
+        <img src="assets/img/more.svg">
+        <span>More Actions</span>
+      </button>
+    </div>
+    <div class="text editable" contenteditable="true">
+    </div>
+  </div>
+</div>

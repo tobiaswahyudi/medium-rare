@@ -1,6 +1,6 @@
-import * as firebase from "firebase/app";
+import * as firebase from 'firebase/app';
 
-export interface Document {
+export interface MWDocument {
   id: string;
   title: string;
   dateCreated: Date;
