@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import FirebaseService from '../firebase/firebase.service';
 
 @Component({
   selector: 'app-editor-view',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(public firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
   }
