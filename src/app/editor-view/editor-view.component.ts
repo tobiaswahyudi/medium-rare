@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import FirebaseService from '../firebase/firebase.service';
+import { redirectToHome } from '../utils';
 
 @Component({
   selector: 'app-editor-view',
@@ -15,7 +16,7 @@ export class EditorViewComponent implements OnInit {
     // Auth takes an extra event loop (?) so it would be useless either way
     // TODO: Find actual way to do route protection
     if (this.firebaseService.user === undefined) {
-      window.location.href = '/';
+      redirectToHome();
     }
   }
 }
