@@ -27,13 +27,28 @@ export class FirebaseService {
     this.app = firebaseApp.initializeApp(firebaseConfig);
     this.firestore = this.app.firestore();
     this.firestoreRef = this.firestore.collection("users");
+
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.user = user;
+      }
+    });
   }
 
   public login(): void {
     const provider = new firebaseApp.auth.GoogleAuthProvider();
-    this.app.auth().signInWithPopup(provider).then((result) => {
+
+    this.app.auth().signInWithPopup(provider)
+    .then((result) => {
       this.user = result.user;
-    });
+    })
+    .catch(console.log);
+  }
+
+  public logout(): void {
+    this.app.auth().signOut();
+    this.user = undefined;
   }
 }
 
