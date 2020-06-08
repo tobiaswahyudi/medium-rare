@@ -1,1 +1,13 @@
-<p>left-nav works!</p>
+<div class="left-nav">
+  <span class="title serif">MediumWell</span>
+  <hr>
+  <span class="files-header">My Files</span>
+  <div class="files">
+
+  </div>
+  <hr>
+  <div class="foot">
+    <span class="userinfo">Signed in as {{firebaseService.user.displayName}}</span>
+    <a (click)="firebaseService.logout()" *ngIf="firebaseService.user">Sign Out</a>
+  </div>
+</div>
