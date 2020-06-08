@@ -21,13 +21,12 @@ export class FirestoreService {
     return docData(this.firebaseService.firestoreRef.doc(user.uid));
   }
 
-  public updateDocs(): void {
+  public updateDocs(): Observable<MWDocument[]> {
     const user = this.firebaseService.user;
     if (!user) {
       throw new Error('User must be logged in.');
     }
-    collectionData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'))
-    .subscribe(console.log);
+    return collectionData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'));
   }
 
   public createDoc(file: MWDocument): void {

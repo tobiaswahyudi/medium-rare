@@ -19,6 +19,7 @@ export class DashboardPageComponent implements OnInit {
     if (this.firebaseService.user === undefined) {
       redirectToHome();
     }
+    this.firestoreService.updateDocs();
     this.firestoreService.createOnFirstTime();
   }
 }
