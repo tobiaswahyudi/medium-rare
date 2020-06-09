@@ -29,6 +29,11 @@ export class FirestoreService {
     return collectionData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'));
   }
 
+  public getDoc(id: string): Observable<MWDocument> {
+    const user = this.firebaseService.user;
+    return docData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc(id));
+  }
+
   public createDoc(file: MWDocument): void {
     const user = this.firebaseService.user;
     if (!user) {
