@@ -5,7 +5,7 @@
     <div class="toolbar">
       <div class="searchbar">
         <img src="assets/img/search.svg">
-        <input placeholder="Search for a file...">
+        <input placeholder="Search for a file..." [ngModel]="search" (ngModelChange)="searchChange($event)">
       </div>
       <div class="gridlist">
         <img src="assets/img/grid.svg">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="files">
-      <app-dashboard-document *ngFor="let doc of firestoreService.docs" [doc]="doc"></app-dashboard-document>
+      <app-dashboard-document *ngFor="let doc of filtered" [doc]="doc"></app-dashboard-document>
       <div class="empty"></div>
       <div class="empty"></div>
       <div class="empty"></div>
