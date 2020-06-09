@@ -30,6 +30,7 @@ export class FirebaseService {
     this.firestoreRef = this.firestore.collection('users');
 
     firebaseApp.auth().onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         this.user = user;
       }

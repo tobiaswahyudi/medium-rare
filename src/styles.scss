@@ -1,4 +1,6 @@
 @import "./variables.scss";
+@import "./medium-editor/css/medium-editor.css";
+@import "./medium-editor/css/themes/beagle.css";
 
 html, body, span, p {
   font-family: 'Source Sans Pro', sans-serif;

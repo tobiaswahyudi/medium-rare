@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import FirebaseService from '../firebase/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MWDocument } from '../types';
 import { FirestoreService } from '../firebase/firestore.service';
 import { first } from 'rxjs/operators';
+import MediumEditor from '../../medium-editor/js/medium-editor';
 
 @Component({
   selector: 'app-editor-view',
   templateUrl: './editor-view.component.html',
   styleUrls: ['./editor-view.component.scss']
 })
-export class EditorViewComponent implements OnInit {
+export class EditorViewComponent implements OnInit, AfterViewInit {
 
   id: string;
   doc: MWDocument;
   timeoutHold: number | null;
+  holder: string;
+  editor: any;
 
   constructor(
     public firebaseService: FirebaseService,
@@ -24,12 +27,18 @@ export class EditorViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    this.handleChange = this.handleChange.bind(this);
+
     // Should probably protect from router rather than the components.
     // Auth takes an extra event loop (?) so it would be useless either way
     // TODO: Find actual way to do route protection
     if (this.firebaseService.user === undefined) {
       this.router.navigateByUrl('/');
+      console.log('a');
     }
+
+    this.editor = null;
 
     this.doc = {
       title: '',
@@ -43,8 +52,29 @@ export class EditorViewComponent implements OnInit {
       console.log(params.get('documentId'));
       this.firestoreService.getDoc(params.get('documentId'))
         .pipe(first())
-        .subscribe(doc => this.doc = doc);
+        .subscribe(doc => {
+          console.log('got doc', doc);
+          this.doc = doc;
+          this.syncEditable();
+        });
     });
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.doc);
+    if (!this.editor) {
+      this.editor = new MediumEditor('#editable', { placeholder: false });
+      console.log(this.editor);
+    }
+  }
+
+  syncEditable(): void {
+    const editable = document.getElementById('editable');
+    if (editable) {
+      editable.innerHTML = this.doc.contents;
+      editable.removeEventListener('input', this.handleChange);
+      editable.addEventListener('input', this.handleChange);
+    }
   }
 
   delete(): void {
@@ -52,16 +82,14 @@ export class EditorViewComponent implements OnInit {
     this.router.navigateByUrl('/dashboard');
   }
 
-  debouncedUpdate() {
+  handleChange(): void {
     console.log('debounce');
     window.clearTimeout(this.timeoutHold);
     this.timeoutHold = window.setTimeout(() => {
+      this.doc.contents = document.getElementById('editable').innerHTML;
+      this.doc.dateModified = new Date().getTime();
       this.firestoreService.updateDoc(this.id, this.doc);
       console.log('update');
     }, 300);
-  }
-
-  handleChange() {
-    this.debouncedUpdate();
   }
 }
