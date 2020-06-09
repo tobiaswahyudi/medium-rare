@@ -8,7 +8,3 @@ export interface MWDocument {
   dateModified: Time;
   contents: string;
 }
-
-export interface UserCollection {
-  documents: firebase.firestore.CollectionReference;
-}
