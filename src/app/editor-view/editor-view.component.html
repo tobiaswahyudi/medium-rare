@@ -7,9 +7,9 @@
       <span>{{firebaseService.user.displayName}}</span>
     </div>
     <div class="toolbar">
-      <button disabled>
-        <img src="assets/img/code.svg">
-        <span>Raw HTML</span>
+      <button (click)="delete()">
+        <img src="assets/img/trash.svg">
+        <span>Delete</span>
       </button>
       <button disabled>
         <img src="assets/img/share.svg">

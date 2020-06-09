@@ -45,4 +45,9 @@ export class EditorViewComponent implements OnInit {
         .subscribe(doc => this.doc = doc);
     });
   }
+
+  delete(): void {
+    this.firestoreService.deleteDoc(this.id);
+    this.router.navigateByUrl('/dashboard');
+  }
 }
