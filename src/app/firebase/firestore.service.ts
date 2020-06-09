@@ -19,7 +19,7 @@ export class FirestoreService {
       throw new Error('User must be logged in.');
     }
     collectionData<MWDocument>(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'))
-      .subscribe(docs => this.docs = docs);
+      .subscribe(docs => this.docs = docs.sort((a, b) => b.dateModified - a.dateModified));
   }
 
   public getDoc(id: string): Observable<MWDocument> {
