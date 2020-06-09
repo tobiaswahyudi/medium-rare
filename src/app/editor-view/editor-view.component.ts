@@ -35,7 +35,6 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
     // TODO: Find actual way to do route protection
     if (this.firebaseService.user === undefined) {
       this.router.navigateByUrl('/');
-      console.log('a');
     }
 
     this.editor = null;
@@ -49,11 +48,9 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
 
     this.route.paramMap.subscribe(params => {
       this.id = params.get('documentId');
-      console.log(params.get('documentId'));
       this.firestoreService.getDoc(params.get('documentId'))
         .pipe(first())
         .subscribe(doc => {
-          console.log('got doc', doc);
           this.doc = doc;
           this.syncEditable();
         });
@@ -61,10 +58,8 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log(this.doc);
     if (!this.editor) {
       this.editor = new MediumEditor('#editable', { placeholder: false });
-      console.log(this.editor);
     }
   }
 
@@ -83,13 +78,11 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
   }
 
   handleChange(): void {
-    console.log('debounce');
     window.clearTimeout(this.timeoutHold);
     this.timeoutHold = window.setTimeout(() => {
       this.doc.contents = document.getElementById('editable').innerHTML;
       this.doc.dateModified = new Date().getTime();
       this.firestoreService.updateDoc(this.id, this.doc);
-      console.log('update');
     }, 300);
   }
 }
