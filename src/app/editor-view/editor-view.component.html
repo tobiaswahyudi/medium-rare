@@ -1,7 +1,12 @@
 <div class="page" *ngIf="firebaseService.user">
   <app-left-nav></app-left-nav>
   <div class="editor">
-    <input class="title" value="{{doc.title}}" placeholder="Document Name">
+    <input
+      class="title"
+      [(ngModel)]="doc.title"
+      (ngModelChange)="handleChange()"
+      placeholder="Document Name"
+    >
     <div class="user">
       <img src="{{firebaseService.user.photoURL}}">
       <span>{{firebaseService.user.displayName}}</span>
@@ -24,7 +29,13 @@
         <span>More Actions</span>
       </button>
     </div>
-    <textarea class="text editable" contenteditable="true" [(ngModel)]="doc.contents" placeholder="Start your story...">
+    <textarea
+      class="text editable"
+      contenteditable="true"
+      [(ngModel)]="doc.contents"
+      (ngModelChange)="handleChange()"
+      placeholder="Start your story..."
+    >
     </textarea>
   </div>
 </div>

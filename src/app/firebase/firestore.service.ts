@@ -83,4 +83,12 @@ export class FirestoreService {
     this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc(id).delete();
     this.updateDocs();
   }
+
+  public updateDoc(id: string, file: MWDocument): void {
+    const user = this.firebaseService.user;
+    if (!user) {
+      throw new Error('User must be logged in.');
+    }
+    this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc(id).set(file);
+  }
 }

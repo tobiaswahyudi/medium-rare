@@ -14,6 +14,7 @@ export class EditorViewComponent implements OnInit {
 
   id: string;
   doc: MWDocument;
+  timeoutHold: number | null;
 
   constructor(
     public firebaseService: FirebaseService,
@@ -49,5 +50,18 @@ export class EditorViewComponent implements OnInit {
   delete(): void {
     this.firestoreService.deleteDoc(this.id);
     this.router.navigateByUrl('/dashboard');
+  }
+
+  debouncedUpdate() {
+    console.log('debounce');
+    window.clearTimeout(this.timeoutHold);
+    this.timeoutHold = window.setTimeout(() => {
+      this.firestoreService.updateDoc(this.id, this.doc);
+      console.log('update');
+    }, 300);
+  }
+
+  handleChange() {
+    this.debouncedUpdate();
   }
 }
