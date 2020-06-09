@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import FirebaseService from '../firebase/firebase.service';
 import { FirestoreService } from '../firebase/firestore.service';
 import { redirectToHome } from '../utils';
+import { MWDocument } from '../types';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -12,6 +13,8 @@ export class DashboardPageComponent implements OnInit {
 
   constructor(public firebaseService: FirebaseService, public firestoreService: FirestoreService) {}
 
+  docs: MWDocument[];
+
   ngOnInit(): void {
     // Should probably protect from router rather than the components.
     // Auth takes an extra event loop (?) so it would be useless either way
@@ -19,7 +22,9 @@ export class DashboardPageComponent implements OnInit {
     if (this.firebaseService.user === undefined) {
       redirectToHome();
     }
-    this.firestoreService.updateDocs();
+    this.firestoreService.updateDocs().subscribe(docs => {
+      this.docs = docs;
+    });
     this.firestoreService.createOnFirstTime();
   }
 }

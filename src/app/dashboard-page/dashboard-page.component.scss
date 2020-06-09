@@ -55,6 +55,16 @@
       margin-left: 1.5rem;
     }
   }
+
+  .files {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    justify-content: space-between;
+  }
 }
 
 .switch {
