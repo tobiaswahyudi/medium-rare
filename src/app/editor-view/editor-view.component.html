@@ -1,7 +1,7 @@
 <div class="page" *ngIf="firebaseService.user">
   <app-left-nav></app-left-nav>
   <div class="editor">
-    <input class="title" value="File Title" placeholder="Document Name">
+    <input class="title" value="{{doc.title}}" placeholder="Document Name">
     <div class="user">
       <img src="{{firebaseService.user.photoURL}}">
       <span>{{firebaseService.user.displayName}}</span>
@@ -25,6 +25,7 @@
       </button>
     </div>
     <div class="text editable" contenteditable="true">
+      {{doc.contents}}
     </div>
   </div>
 </div>

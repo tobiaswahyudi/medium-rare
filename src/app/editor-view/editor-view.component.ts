@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import FirebaseService from '../firebase/firebase.service';
 import { redirectToHome } from '../utils';
+import { ActivatedRoute } from '@angular/router';
+import { MWDocument } from '../types';
+import { FirestoreService } from '../firebase/firestore.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editor-view',
@@ -9,7 +13,14 @@ import { redirectToHome } from '../utils';
 })
 export class EditorViewComponent implements OnInit {
 
-  constructor(public firebaseService: FirebaseService) { }
+  id: string;
+  doc: MWDocument;
+
+  constructor(
+    public firebaseService: FirebaseService,
+    private firestoreService: FirestoreService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     // Should probably protect from router rather than the components.
@@ -18,5 +29,20 @@ export class EditorViewComponent implements OnInit {
     if (this.firebaseService.user === undefined) {
       redirectToHome();
     }
+
+    this.doc = {
+      title: '',
+      dateCreated: new Date().getTime(),
+      dateModified: new Date().getTime(),
+      contents: ''
+    };
+
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('documentId');
+      console.log(params.get('documentId'));
+      this.firestoreService.getDoc(params.get('documentId'))
+        .pipe(first())
+        .subscribe(doc => this.doc = doc);
+    });
   }
 }

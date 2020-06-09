@@ -8,7 +8,7 @@ import { EditorViewComponent } from './editor-view/editor-view.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardPageComponent },
   { path: 'editor', component: EditorViewComponent },
-  { path: 'editor/{documentId}', component: EditorViewComponent },
+  { path: 'editor/:documentId', component: EditorViewComponent },
   { path: '**', component: LandingPageComponent }
 ];
 
