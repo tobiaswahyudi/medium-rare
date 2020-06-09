@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 
 .left-nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 
@@ -29,7 +29,7 @@
     margin: 0;
   }
 
-  .files-header {
+  .files-header, .new-file {
     margin: 1rem 0 0.25rem;
     font-size: 1.2rem;
   }
@@ -38,6 +38,7 @@
     flex: 1 1;
     overflow: scroll;
     padding-left: 1rem;
+    width: 100%;
     a {
       display: block;
       color: $text-white;
