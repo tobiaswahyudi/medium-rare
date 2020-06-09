@@ -47,7 +47,6 @@ export class FirestoreService {
       throw new Error('User must be logged in.');
     }
     this.firebaseService.firestoreRef.doc(user.uid).get().then(snapshot => {
-      console.log(snapshot);
       if (!snapshot.exists) {
         this.firebaseService.firestoreRef.doc(user.uid).set({
           displayName: user.displayName
