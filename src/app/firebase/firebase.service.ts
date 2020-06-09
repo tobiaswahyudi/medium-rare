@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as firebaseApp from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class FirebaseService {
   firestoreRef: firebase.firestore.CollectionReference;
   user: firebase.User | undefined;
 
-  constructor() {
+  constructor(private router: Router) {
     const firebaseConfig = {
       apiKey: 'AIzaSyAyn-nl8tGu5JSGiykCqY3fZaFPgcy5Zjc',
       authDomain: 'penciltest-777db.firebaseapp.com',
@@ -42,6 +44,7 @@ export class FirebaseService {
     this.app.auth().signInWithPopup(provider)
       .then((result) => {
         this.user = result.user;
+        this.router.navigateByUrl(environment.baseUrl + '/dashboard');
       })
       .catch(console.error);
   }
