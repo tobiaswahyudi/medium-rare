@@ -46,6 +46,7 @@ header {
 
 .content {
   padding: calc(9vh + 1rem) 3rem 1rem;
+  min-height: 94vh;
   #head {
     display: flex;
     flex-direction: column;
