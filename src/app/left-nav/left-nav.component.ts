@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import FirebaseService from '../firebase/firebase.service';
+import { FirestoreService } from '../firebase/firestore.service';
 
 @Component({
   selector: 'app-left-nav',
@@ -8,9 +9,13 @@ import FirebaseService from '../firebase/firebase.service';
 })
 export class LeftNavComponent implements OnInit {
 
-  constructor(public firebaseService: FirebaseService) { }
+  constructor(
+    public firebaseService: FirebaseService,
+    public firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
+    this.firestoreService.updateDocs();
   }
 
 }

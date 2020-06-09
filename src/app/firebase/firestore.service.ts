@@ -9,7 +9,7 @@ import { docData, collectionData } from 'rxfire/firestore';
 })
 export class FirestoreService {
 
-  documents: MWDocument[];
+  docs: MWDocument[];
 
   constructor(private firebaseService: FirebaseService) { }
 
@@ -21,12 +21,13 @@ export class FirestoreService {
     return docData(this.firebaseService.firestoreRef.doc(user.uid));
   }
 
-  public updateDocs(): Observable<MWDocument[]> {
+  public updateDocs(): void {
     const user = this.firebaseService.user;
     if (!user) {
       throw new Error('User must be logged in.');
     }
-    return collectionData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'));
+    collectionData<MWDocument>(this.firebaseService.firestoreRef.doc(user.uid).collection('documents'))
+      .subscribe(docs => this.docs = docs);
   }
 
   public getDoc(id: string): Observable<MWDocument> {
@@ -42,7 +43,8 @@ export class FirestoreService {
 
     const docRef = this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc()
 
-    docRef.set({id: docRef.id, ...file});
+    docRef.set({ id: docRef.id, ...file });
+    this.updateDocs();
   }
 
   public createOnFirstTime(): void {

@@ -30,13 +30,19 @@
   }
 
   .files-header {
-    margin: 1rem 0;
+    margin: 1rem 0 0.25rem;
     font-size: 1.2rem;
   }
 
   .files {
     flex: 1 1;
     overflow: scroll;
+    padding-left: 1rem;
+    a {
+      display: block;
+      color: $text-white;
+      padding: 0.25rem 0;
+    }
   }
 
   .foot {

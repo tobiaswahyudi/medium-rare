@@ -3,7 +3,7 @@
   <hr>
   <span class="files-header">My Files</span>
   <div class="files">
-
+    <a *ngFor="let doc of firestoreService.docs" routerLink="/editor/{{doc.id}}">{{doc.title}}</a>
   </div>
   <hr>
   <div class="foot">
