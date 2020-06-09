@@ -1,6 +1,5 @@
 <a class="doc" routerLink="/editor/{{doc.id}}">
-  <div class="content">
-    {{doc.contents}}
+  <div class="content" [innerHtml]="doc.contents">
   </div>
   <div class="caption">
     <span class="title">
