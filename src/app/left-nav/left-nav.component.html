@@ -1,7 +1,8 @@
 <div class="left-nav">
   <a class="title serif" routerLink="/">MediumWell</a>
   <hr>
-  <span class="files-header">My Files</span>
+  <span class="new-file clickable" (click)="newDocument()">New File</span>
+  <span class="files-header clickable" routerLink="/dashboard">My Files</span>
   <div class="files">
     <a *ngFor="let doc of firestoreService.docs" routerLink="/editor/{{doc.id}}">{{doc.title}}</a>
   </div>

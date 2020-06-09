@@ -27,16 +27,18 @@ export class FirestoreService {
     return docData(this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc(id));
   }
 
-  public createDoc(file: MWDocument): void {
+  public createDoc(file: MWDocument): string {
     const user = this.firebaseService.user;
     if (!user) {
       throw new Error('User must be logged in.');
     }
 
-    const docRef = this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc()
+    const docRef = this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc();
 
     docRef.set({ id: docRef.id, ...file });
     this.updateDocs();
+
+    return docRef.id;
   }
 
   public createOnFirstTime(): void {
@@ -57,6 +59,19 @@ export class FirestoreService {
           contents: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ised do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
         });
       }
+    });
+  }
+
+  public createBlankDocument(): string {
+    const user = this.firebaseService.user;
+    if (!user) {
+      throw new Error('User must be logged in.');
+    }
+    return this.createDoc({
+      title: 'Untitled Document',
+      dateCreated: new Date().getTime(),
+      dateModified: new Date().getTime(),
+      contents: ''
     });
   }
 }
