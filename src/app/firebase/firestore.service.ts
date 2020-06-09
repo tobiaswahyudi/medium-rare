@@ -35,7 +35,9 @@ export class FirestoreService {
       throw new Error('User must be logged in.');
     }
 
-    this.firebaseService.firestoreRef.doc(user.uid).collection('documents').add(file);
+    const docRef = this.firebaseService.firestoreRef.doc(user.uid).collection('documents').doc()
+
+    docRef.set({id: docRef.id, ...file});
   }
 
   public createOnFirstTime(): void {
@@ -51,9 +53,9 @@ export class FirestoreService {
         });
         this.createDoc({
           title: 'Sample Document',
-          dateCreated: new Date(),
-          dateModified: new Date(),
-          contents: ''
+          dateCreated: new Date().getTime(),
+          dateModified: new Date().getTime(),
+          contents: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ised do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
         });
       }
     });

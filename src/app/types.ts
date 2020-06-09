@@ -1,9 +1,11 @@
 import * as firebase from 'firebase/app';
 
+export type Time = number;
 export interface MWDocument {
+  id?: string;
   title: string;
-  dateCreated: Date;
-  dateModified: Date;
+  dateCreated: Time;
+  dateModified: Time;
   contents: string;
 }
 
