@@ -13,11 +13,11 @@ html, body, span, p {
   font-size: 1.5rem;
 }
 
-button, a {
+button, a, .clickable {
   cursor: pointer;
 }
 
-input {
+input, textarea {
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: $text-gray;
     opacity: 1; /* Firefox */
