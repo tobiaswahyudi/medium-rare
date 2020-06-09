@@ -3,7 +3,6 @@ import FirebaseService from '../firebase/firebase.service';
 import { FirestoreService } from '../firebase/firestore.service';
 import { MWDocument } from '../types';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -25,7 +24,7 @@ export class DashboardPageComponent implements OnInit {
     // Auth takes an extra event loop (?) so it would be useless either way
     // TODO: Find actual way to do route protection
     if (this.firebaseService.user === undefined) {
-      this.router.navigateByUrl(environment.baseUrl);
+      this.router.navigateByUrl('/');
     }
     this.firestoreService.createOnFirstTime();
   }

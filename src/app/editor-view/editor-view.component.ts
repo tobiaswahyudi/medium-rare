@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MWDocument } from '../types';
 import { FirestoreService } from '../firebase/firestore.service';
 import { first } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-editor-view',
@@ -28,7 +27,7 @@ export class EditorViewComponent implements OnInit {
     // Auth takes an extra event loop (?) so it would be useless either way
     // TODO: Find actual way to do route protection
     if (this.firebaseService.user === undefined) {
-      this.router.navigateByUrl(environment.baseUrl);
+      this.router.navigateByUrl('/');
     }
 
     this.doc = {

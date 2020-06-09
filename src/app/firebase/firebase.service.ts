@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import * as firebaseApp from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +43,7 @@ export class FirebaseService {
     this.app.auth().signInWithPopup(provider)
       .then((result) => {
         this.user = result.user;
-        this.router.navigateByUrl(environment.baseUrl + '/dashboard');
+        this.router.navigateByUrl('/dashboard');
       })
       .catch(console.error);
   }
