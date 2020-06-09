@@ -29,13 +29,12 @@
         <span>More Actions</span>
       </button>
     </div>
-    <textarea
-      class="text editable"
-      contenteditable="true"
-      [(ngModel)]="doc.contents"
-      (ngModelChange)="handleChange()"
+    <div
+      contenteditable
+      class="text"
       placeholder="Start your story..."
+      id="editable"
     >
-    </textarea>
+    </div>
   </div>
 </div>
