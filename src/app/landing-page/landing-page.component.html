@@ -18,7 +18,7 @@
   <div id="center">
     <img id="img" src="assets/img/editor.png">
     <span class="action">Get started with MediumWell!</span>
-    <app-login-button></app-login-button>
+    <app-login-button (click)="firebaseService.login()"></app-login-button>
   </div>
 </div>
 
