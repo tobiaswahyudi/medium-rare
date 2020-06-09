@@ -9,7 +9,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 import { LeftNavComponent } from './left-nav/left-nav.component';
 import { EditorViewComponent } from './editor-view/editor-view.component';
 import { DashboardDocumentComponent } from './dashboard-page/dashboard-document/dashboard-document.component';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,8 @@ import { DashboardDocumentComponent } from './dashboard-page/dashboard-document/
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,8 +24,7 @@
         <span>More Actions</span>
       </button>
     </div>
-    <div class="text editable" contenteditable="true">
-      {{doc.contents}}
-    </div>
+    <textarea class="text editable" contenteditable="true" [(ngModel)]="doc.contents" placeholder="Start your story...">
+    </textarea>
   </div>
 </div>
