@@ -75,6 +75,11 @@
     outline: none;
     padding-top: 1.3rem;
     box-sizing: border-box;
+
+    font: inherit;
+    border: none;
+    outline: none;
+
     &:empty:before{
       content: "Start your story...";
       color: $text-gray;

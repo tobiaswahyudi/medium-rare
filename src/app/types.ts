@@ -1,13 +1,10 @@
 import * as firebase from 'firebase/app';
 
+export type Time = number;
 export interface MWDocument {
-  id: string;
+  id?: string;
   title: string;
-  dateCreated: Date;
-  dateModified: Date;
+  dateCreated: Time;
+  dateModified: Time;
   contents: string;
-}
-
-export interface UserCollection {
-  documents: firebase.firestore.CollectionReference;
 }

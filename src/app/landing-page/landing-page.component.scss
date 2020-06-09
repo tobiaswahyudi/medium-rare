@@ -18,6 +18,10 @@ header {
 
   box-sizing: border-box;
 
+  .title {
+    color: $text-white;
+  }
+
   .spacer {
     flex: 1 1;
   }

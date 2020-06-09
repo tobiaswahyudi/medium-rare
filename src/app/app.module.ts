@@ -8,7 +8,8 @@ import { LoginButtonComponent } from './login-button/login-button.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { LeftNavComponent } from './left-nav/left-nav.component';
 import { EditorViewComponent } from './editor-view/editor-view.component';
-
+import { DashboardDocumentComponent } from './dashboard-page/dashboard-document/dashboard-document.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +17,13 @@ import { EditorViewComponent } from './editor-view/editor-view.component';
     LoginButtonComponent,
     DashboardPageComponent,
     LeftNavComponent,
-    EditorViewComponent
+    EditorViewComponent,
+    DashboardDocumentComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-<div class="page">
+<div class="page" *ngIf="firebaseService.user">
   <app-left-nav></app-left-nav>
   <div class="dashboard">
     <span class="title">My Files</span>
@@ -17,7 +17,15 @@
       </div>
     </div>
     <div class="files">
-
+      <app-dashboard-document *ngFor="let doc of firestoreService.docs" [doc]="doc"></app-dashboard-document>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
     </div>
   </div>
 </div>

@@ -1,30 +1,41 @@
-<div class="page">
+<div class="page" *ngIf="firebaseService.user">
   <app-left-nav></app-left-nav>
   <div class="editor">
-    <input class="title" value="File Title" placeholder="Document Name">
+    <input
+      class="title"
+      [(ngModel)]="doc.title"
+      (ngModelChange)="handleChange()"
+      placeholder="Document Name"
+    >
     <div class="user">
       <img src="{{firebaseService.user.photoURL}}">
       <span>{{firebaseService.user.displayName}}</span>
     </div>
     <div class="toolbar">
-      <button>
-        <img src="assets/img/code.svg">
-        <span>Raw HTML</span>
+      <button (click)="delete()">
+        <img src="assets/img/trash.svg">
+        <span>Delete</span>
       </button>
-      <button>
+      <button disabled>
         <img src="assets/img/share.svg">
         <span>Share</span>
       </button>
-      <button>
+      <button disabled>
         <img src="assets/img/invite.svg">
         <span>Collaborate</span>
       </button>
-      <button>
+      <button disabled>
         <img src="assets/img/more.svg">
         <span>More Actions</span>
       </button>
     </div>
-    <div class="text editable" contenteditable="true">
-    </div>
+    <textarea
+      class="text editable"
+      contenteditable="true"
+      [(ngModel)]="doc.contents"
+      (ngModelChange)="handleChange()"
+      placeholder="Start your story..."
+    >
+    </textarea>
   </div>
 </div>
