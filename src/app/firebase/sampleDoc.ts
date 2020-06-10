@@ -1,0 +1,2 @@
+export const sampleDocText = '<h2>Introduction</h2>Hello! It\'s nice to meet you :)</p><h3>What is this?</h3><p>This is an introduction document, created for you to get to know <b><i>medium-well</i></b>. Try selecting some text on the document! Play around with the toolbar that pops up. Anything you modify or type here is automatically synced to the database.</p><h3>How do I make new documents?</h3 > <p>You can create new documents using the "New File" link on the left navigation bar.</p>';
+export default sampleDocText;

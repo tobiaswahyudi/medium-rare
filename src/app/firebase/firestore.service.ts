@@ -3,6 +3,8 @@ import FirebaseService from './firebase.service';
 import { MWDocument } from '../types';
 import { Observable } from 'rxjs';
 import { docData, collectionData } from 'rxfire/firestore';
+import sampleDocText from './sampleDoc';
+
 
 @Injectable({
   providedIn: 'root'
@@ -52,10 +54,10 @@ export class FirestoreService {
           displayName: user.displayName
         });
         this.createDoc({
-          title: 'Sample Document',
+          title: 'Introduction Document',
           dateCreated: new Date().getTime(),
           dateModified: new Date().getTime(),
-          contents: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ised do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+          contents: sampleDocText
         });
       }
     });
