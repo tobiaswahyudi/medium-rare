@@ -10,6 +10,7 @@ import { LeftNavComponent } from './left-nav/left-nav.component';
 import { EditorViewComponent } from './editor-view/editor-view.component';
 import { DashboardDocumentComponent } from './dashboard-page/dashboard-document/dashboard-document.component';
 import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     DashboardPageComponent,
     LeftNavComponent,
     EditorViewComponent,
-    DashboardDocumentComponent
+    DashboardDocumentComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
