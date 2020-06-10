@@ -71,6 +71,8 @@
       background: none;
       margin-right: 1rem;
 
+      font: inherit;
+
       img {
         margin-right: 0.5rem;
       }
@@ -116,6 +118,7 @@
 
     >* {
       margin-top: 0;
+      margin-block-start: 0;
     }
   }
 }
