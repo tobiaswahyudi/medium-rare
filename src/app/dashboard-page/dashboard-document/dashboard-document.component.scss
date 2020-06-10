@@ -41,6 +41,9 @@
 
     padding-top: 0.6rem;
 
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     .title {
       margin-bottom: 0.2rem;
       color: $text-black;

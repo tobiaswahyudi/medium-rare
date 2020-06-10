@@ -44,6 +44,8 @@
       display: block;
       color: $text-white;
       padding: 0.25rem 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
