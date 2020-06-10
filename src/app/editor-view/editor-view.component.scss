@@ -14,14 +14,21 @@
 
   height: 100vh;
 
-  .title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 0.7rem;
-    border: none;
-    outline: none;
-
+  .top-row {
+    display: flex;
+    flex-direction: row;
     width: 100%;
+    align-items: flex-start;
+
+    .title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+      border: none;
+      outline: none;
+
+      flex: 1 1;
+    }
   }
 
   .user {
@@ -70,21 +77,59 @@
     }
   }
 
+  .sync-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    padding: 0.1rem;
+
+    img {
+      height: 0.9rem;
+      width: 0.9rem;
+
+      filter: opacity(0.3);
+    }
+
+    span {
+      font-size: 0.8rem;
+      color: $text-gray;
+    }
+  }
+
   .text {
     width: 100%;
     flex: 1 1;
     overflow: scroll;
     outline: none;
-    padding-top: 1.3rem;
+    padding-top: 1.2rem;
     box-sizing: border-box;
 
     font: inherit;
     border: none;
     outline: none;
 
-    &:empty:before{
+    &:empty:before {
       content: "Start your story...";
       color: $text-gray;
     }
+
+    >* {
+      margin-top: 0;
+    }
+  }
+}
+
+#spin {
+  animation: 1s linear infinite spin;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(-360deg);
   }
 }

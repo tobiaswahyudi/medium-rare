@@ -16,7 +16,6 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
   id: string;
   doc: MWDocument;
   timeoutHold: number | null;
-  holder: string;
   editor: any;
 
   constructor(
@@ -38,6 +37,7 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
     }
 
     this.editor = null;
+    this.timeoutHold = null;
 
     this.doc = {
       title: '',
@@ -78,11 +78,14 @@ export class EditorViewComponent implements OnInit, AfterViewInit {
   }
 
   handleChange(): void {
-    window.clearTimeout(this.timeoutHold);
+    if (this.timeoutHold) {
+      window.clearTimeout(this.timeoutHold);
+    }
     this.timeoutHold = window.setTimeout(() => {
       this.doc.contents = document.getElementById('editable').innerHTML;
       this.doc.dateModified = new Date().getTime();
       this.firestoreService.updateDoc(this.id, this.doc);
+      this.timeoutHold = null;
     }, 300);
   }
 }

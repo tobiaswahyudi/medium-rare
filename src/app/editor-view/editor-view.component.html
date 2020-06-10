@@ -1,12 +1,15 @@
 <div class="page" *ngIf="firebaseService.user">
   <app-left-nav></app-left-nav>
   <div class="editor">
-    <input
-      class="title"
-      [(ngModel)]="doc.title"
-      (ngModelChange)="handleChange()"
-      placeholder="Document Name"
-    >
+    <div class="top-row">
+      <input class="title" [(ngModel)]="doc.title" (ngModelChange)="handleChange()" placeholder="Document Name">
+      <div class="sync-status">
+        <img *ngIf="timeoutHold" src="assets/img/sync.svg" id="spin">
+        <img *ngIf="timeoutHold === null" src="assets/img/check.svg">
+        <span *ngIf="timeoutHold">Waiting...</span>
+        <span *ngIf="timeoutHold === null">Synced</span>
+      </div>
+    </div>
     <div class="user">
       <img src="{{firebaseService.user.photoURL}}">
       <span>{{firebaseService.user.displayName}}</span>
